@@ -33,7 +33,7 @@ class TVDB
   base_uri 'www.thetvdb.com'
   format :xml
 =begin rdoc
-This function is highly likely to return more than one result.  You're on your own as to how you deal with this (since it's interface dependant).
+This function is highly likely to return more than one result.  It returns and Array of Hash(es) whether it returns one result or 100.  This seemed like a good way to simplify dealing with the results since you always know what you're going to get.  You're on your own as to how you deal with this however, since it's interface dependant.
 ==Example
     series = TVDB.find_series_by_name("Battlestar Galactica")
     if series.size != 1
@@ -54,7 +54,13 @@ This function is highly likely to return more than one result.  You're on your o
     else
       res = res["Data"]["Series"]
     end
-    return res
+    if res.is_a?(Hash)
+      return [res]
+    elsif res.is_a?(Array)
+      return res
+    else
+      raise "Unexpected Data Type Returned #{res.class}"
+    end
   end
 =begin rdoc
   Much more reliable way to get your series information.  Use inspect to determine the different hash values.
