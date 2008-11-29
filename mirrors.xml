@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Mirrors>
+  <Mirror>
+    <id>1</id>
+    <mirrorpath>http://thetvdb.com</mirrorpath>
+    <typemask>7</typemask>
+  </Mirror>
+<Mirror>
+	<id>2</id>
+	<mirrorpath>http://google.com</mirrorpath>
+	<typemask>7</typemask>
+</Mirror>
+</Mirrors>
